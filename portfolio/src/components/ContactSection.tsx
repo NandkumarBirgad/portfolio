@@ -45,13 +45,47 @@ export const ContactSection = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("http://localhost:4000/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          details: formData.message,
+          budget: "Not specified",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. I'll get back to you soon!",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+      console.error("Contact form error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -87,7 +121,7 @@ export const ContactSection = () => {
               Let's connect
             </h3>
             <p className="text-muted-foreground mb-8">
-              I'm currently looking for new opportunities and my inbox is always open. 
+              I'm currently looking for new opportunities and my inbox is always open.
               Whether you have a question or just want to say hi, I'll do my best to get back to you!
             </p>
 
@@ -181,9 +215,9 @@ export const ContactSection = () => {
                 />
               </div>
 
-              <Button variant="hero" size="lg" type="submit" className="w-full">
-                <Send size={18} />
-                Send Message
+              <Button variant="hero" size="lg" type="submit" className="w-full" disabled={isSubmitting}>
+                <Send size={18} className={isSubmitting ? "animate-spin" : ""} />
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </motion.div>

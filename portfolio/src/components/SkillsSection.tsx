@@ -1,40 +1,55 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import {
+  Code,
+  Database,
+  Server,
+  Cloud,
+  GitBranch,
+  Terminal,
+  Layout,
+  FileJson,
+  Globe,
+  Cpu,
+  Box,
+  Layers,
+  Workflow
+} from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend",
     skills: [
-      { name: "HTML5", level: 90 },
-      { name: "CSS3", level: 85 },
-      { name: "JavaScript", level: 85 },
-      { name: "React", level: 80 },
-      { name: "Tailwind CSS", level: 85 },
+      { name: "HTML5", icon: Globe },
+      { name: "CSS3", icon: Layout },
+      { name: "JavaScript", icon: FileJson },
+      { name: "React", icon: Code },
+      { name: "Tailwind CSS", icon: Box },
     ],
   },
   {
     title: "Backend",
     skills: [
-      { name: "Node.js", level: 75 },
-      { name: "Express.js", level: 75 },
-      { name: "REST APIs", level: 80 },
+      { name: "Node.js", icon: Server },
+      { name: "Express.js", icon: Workflow },
+      { name: "REST APIs", icon: Layers },
     ],
   },
   {
     title: "Database",
     skills: [
-      { name: "MongoDB", level: 75 },
-      { name: "MySQL", level: 70 },
+      { name: "MongoDB", icon: Database },
+      { name: "MySQL", icon: Database },
     ],
   },
   {
     title: "Tools & Cloud",
     skills: [
-      { name: "Git", level: 80 },
-      { name: "GitHub", level: 85 },
-      { name: "AWS", level: 40 },
-      { name: "VS Code", level: 90 },
+      { name: "Git", icon: GitBranch },
+      { name: "GitHub", icon: GitBranch },
+      { name: "AWS", icon: Cloud },
+      { name: "VS Code", icon: Terminal },
     ],
   },
 ];
@@ -64,38 +79,31 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="glass-card p-6 md:p-8"
+              className="space-y-6"
             >
-              <h3 className="text-xl font-heading font-semibold mb-6 text-primary">
+              <h3 className="text-xl font-heading font-semibold text-center md:text-left text-primary/80">
                 {category.title}
               </h3>
-              <div className="space-y-5">
+              <div className="grid grid-cols-2 gap-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-foreground font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground text-sm">{skill.level}%</span>
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex flex-col items-center justify-center p-4 glass-card hover:border-primary/50 transition-colors duration-300 group"
+                  >
+                    <div className="p-3 rounded-full bg-primary/10 text-primary mb-3 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      <skill.icon size={24} />
                     </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{
-                          duration: 1,
-                          delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                          ease: "easeOut",
-                        }}
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                      />
-                    </div>
-                  </div>
+                    <span className="text-sm font-medium text-center">{skill.name}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
