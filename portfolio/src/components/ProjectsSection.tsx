@@ -16,13 +16,13 @@ const projects = [
     featured: true,
   },
   {
-    title: "Social Connect",
+    title: "Media Sync App",
     description:
-      "A social media platform with features like posts, comments, likes, follow system, and real-time notifications.",
-    tech: ["MERN Stack", "Redux", "Cloudinary", "JWT"],
+      "A real-time media synchronization platform where users can watch videos and listen to audio together. One host controls playback while others stay perfectly in sync.",
+    tech: ["React","Node.js", "Express","MongoDb", "Socket.io", "Cloudinary","Docker"],
     icon: Users,
-    github: "https://github.com",
-    demo: "#",
+    github: "https://github.com/NandkumarBirgad/Media-Sync-App.git",
+    demo: "https://media-sync-app-nsau.vercel.app",
     featured: true,
   },
   {
