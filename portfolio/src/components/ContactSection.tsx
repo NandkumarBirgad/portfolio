@@ -89,9 +89,13 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative" ref={ref}>
-      {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="contact" className="py-24 md:py-36 relative" ref={ref}>
+      {/* Background */}
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+      <motion.div
+        className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, hsl(262 83% 68% / 0.08), transparent 70%)" }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -100,12 +104,15 @@ export const ContactSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
+          <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "hsl(262 83% 75%)" }}>
+            — Let's Talk —
+          </p>
+          <h2 className="section-title">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+          <div className="w-24 h-1 mx-auto rounded-full mt-4" style={{ background: "linear-gradient(90deg, hsl(262 83% 68%), hsl(186 85% 55%))" }} />
+          <p className="mt-5 text-muted-foreground max-w-2xl mx-auto">
+            Have a project in mind or want to collaborate? My inbox is always open!
           </p>
         </motion.div>
 
