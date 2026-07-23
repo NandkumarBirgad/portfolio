@@ -26,15 +26,35 @@ const projects = [
     featured: true,
   },
   {
-    title: "E-Commerce Store",
+    title: "Raisina-Study-Centre-ERP",
     description:
-      "Full-featured e-commerce application with product listings, cart management, payment integration, and admin dashboard.",
-    tech: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
-    icon: ShoppingCart,
-    github: "https://github.com",
-    demo: "#",
-    featured: false,
+      "",
+    tech: ["React", "Node.js", "MongoDB", "JWT", "Tailwind","REST API"],
+    icon: Users,     
+    github: "https://github.com/NandkumarBirgad/Raisina_Study_Centre_ERP.git",
+    demo: "https://raisina-study-centre-erp.vercel.app",
+    featured: true,
   },
+  {
+    title: "Notes-Sharing Platform",
+    description:
+      "A platform for sharing and collaborating on digital notes with real-time updates.",
+    tech: ["React", "Node.js", "MongoDB", "Socket.io", "Tailwind"],
+    icon: ShoppingCart,
+    github: "https://github.com/NandkumarBirgad/Notes-sharing.git",
+    demo: "https://notes-sharing-two.vercel.app/",
+    featured: true,
+  },
+  {
+    title: "DeepFake Detection System",
+    description:" A deep learning-based system for detecting deepfake videos and images,and Ai-genreted video, images providing accurate results with a user-friendly interface.",
+    tech:[],
+    icon: Users,
+    github:"https://github.com/NandkumarBirgad/deepguard-ai.git",
+    demo:"https://deepguard-ai-3.onrender.com",
+    featured: true,
+  }
+
 ];
 
 export const ProjectsSection = () => {
